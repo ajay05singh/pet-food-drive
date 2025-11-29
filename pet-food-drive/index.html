@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Paws for a Cause - Pet Food Drive by Myrah</title>
+    <meta name="description" content="Help Myrah collect 160kg of pet food for Vancouver, New Westminster and Delta Animal Shelters!">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-bottom: 60px;
+        }
+        
+        .mobile-container {
+            max-width: 100%;
+            padding: 15px;
+            padding-bottom: 20px;
+        }
+        
+        /* Mobile-first header */
+        .mobile-header {
+            background: white;
+            border-radius: 20px;
+            padding: 25px 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            margin-bottom: 20px;
+        }
+        
+        .mobile-header h1 {
+            color: #764ba2;
+            font-size: 28px;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        
+        .achievement-badge {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #764ba2;
+            padding: 12px 15px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 15px;
+            display: inline-block;
+            box-shadow: 0 3px 10px rgba(255,215,0,0.3);
+        }
+        
+        /* Mobile card design */
+        .mobile-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .card-icon {
+            font-size: 35px;
+            margin-right: 15px;
+        }
+        
+        .card-title {
+            color: #764ba2;
+            font-size: 22px;
+            font-weight: bold;
+            flex: 1;
+        }
+        
+        .card-content {
+            color: #555;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        /* Critical warning - only one instance */
+        .critical-warning {
+            background: #ffebee;
+            border: 3px solid #f44336;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+        
+        .critical-warning-text {
+            color: #d32f2f;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        /* Progress section for mobile */
+        .progress-container {
+            background: white;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .progress-title {
+            color: #764ba2;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .progress-bar-wrapper {
+            background: #e0e0e0;
+            border-radius: 20px;
+            height: 35px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 8px;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            height: 100%;
+            width: 0%;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            transition: width 2s ease;
+        }
+        
+        .progress-text {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* 100km Challenge Card - BIGGER */
+        .challenge-card {
+            background: linear-gradient(135deg, #4caf50 0%, #8bc34a 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(76,175,80,0.3);
+            animation: pulse 3s infinite;
+        }
+        
+        .challenge-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .challenge-number {
+            font-size: 72px;
+            font-weight: bold;
+            margin: 15px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .challenge-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-top: 15px;
+        }
+        
+        .challenge-progress-bar {
+            background: rgba(255,255,255,0.3);
+            border-radius: 20px;
+            height: 40px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        
+        .challenge-progress-fill {
+            background: white;
+            height: 100%;
+            width: 0%;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4caf50;
+            font-weight: bold;
+            font-size: 16px;
+            transition: width 2s ease;
+        }
+        
+        /* Mobile-optimized shelters */
+        .shelter-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 5px solid #0984e3;
+        }
+        
+        .shelter-name {
+            color: #0984e3;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .shelter-link {
+            display: inline-block;
+            background: #0984e3;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 10px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        /* Mobile contact buttons */
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .contact-button {
+            background: white;
+            border: 3px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #764ba2;
+            text-decoration: none;
+            width: 100%;
+        }
+        
+        .contact-button:active {
+            transform: scale(0.98);
+            background: #f5f5f5;
+        }
+        
+        .contact-button-icon {
+            font-size: 30px;
+        }
+        
+        /* Mobile-friendly items list */
+        .items-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .item-category {
+            background: #f0f4f8;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .item-category-title {
+            color: #764ba2;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .brand-list {
+            margin-left: 10px;
+        }
+        
+        .brand-item {
+            background: white;
+            padding: 10px 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border-left: 3px solid #667eea;
+            font-size: 15px;
+        }
+        
+        /* Photo Gallery */
+        .photo-gallery {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .photo-placeholder {
+            background: #f0f0f0;
+            border: 2px dashed #764ba2;
+            border-radius: 10px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-size: 12px;
+            color: #999;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .photo-placeholder input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        /* QR code section */
+        .qr-section {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .qr-placeholder {
+            width: 180px;
+            height: 180px;
+            background: #f0f0f0;
+            border: 2px dashed #764ba2;
+            margin: 20px auto;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: #999;
+        }
+        
+        /* Stats grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .stat-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 28px;
+            color: #764ba2;
+            font-weight: bold;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        /* Countdown timer */
+        .countdown {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(245,87,108,0.3);
+        }
+        
+        .countdown-number {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .countdown-label {
+            font-size: 18px;
+        }
+        
+        /* Footer */
+        .mobile-footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            font-size: 14px;
+        }
+        
+        /* Responsive adjustments for tablets */
+        @media (min-width: 768px) {
+            .mobile-container {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        /* Remove hover effects on mobile */
+        @media (hover: none) {
+            .contact-button:hover {
+                transform: none;
+            }
+        }
+        
+        /* iOS specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                -webkit-font-smoothing: antialiased;
+            }
+            
+            .mobile-card {
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-container">
+        <!-- Header -->
+        <div class="mobile-header">
+            <h1>🐾 Paws for a Cause 🐾</h1>
+            <p style="color: #667eea; font-size: 18px;">Pet Food Drive by Myrah</p>
+            <div class="achievement-badge">
+                ⭐ Last Year: 80 KILOS Collected! ⭐
+            </div>
+        </div>
+        
+        <!-- Critical Warning - Only Once -->
+        <div class="critical-warning">
+            <div class="critical-warning-text">
+                🚫 NO MONEY ACCEPTED! 🚫<br>
+                <span style="font-size: 16px;">PET FOOD DONATIONS ONLY</span>
+            </div>
+        </div>
+        
+        <!-- Countdown Timer -->
+        <div class="countdown">
+            <div class="countdown-label">Campaign Ends In:</div>
+            <div class="countdown-number" id="daysLeft">--</div>
+            <div class="countdown-label">Days (Dec 28)</div>
+        </div>
+        
+        <!-- MY 100KM CHALLENGE - BIG AND MOTIVATIONAL -->
+        <div class="challenge-card">
+            <div class="challenge-title">🏃‍♀️ MY 100KM CHALLENGE! 🏃‍♀️</div>
+            <div class="challenge-number">100 KM</div>
+            <div class="challenge-progress-bar">
+                <div class="challenge-progress-fill" id="challengeProgressBar">0km</div>
+            </div>
+            <div class="challenge-text">
+                <strong>I'm running/walking 100km to motivate YOU!</strong><br>
+                For every donation, I run harder! Help me reach my goal by donating pet food. 
+                Your support keeps me going! 💪
+            </div>
+            <p style="margin-top: 15px; font-size: 20px; font-weight: bold;">
+                <span id="kmCompleted">0</span> / 100 KM COMPLETED
+            </p>
+        </div>
+        
+        <!-- Progress Section -->
+        <div class="mobile-card">
+            <div class="card-header">
+                <span class="card-icon">📊</span>
+                <span class="card-title">Food Collection Progress</span>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-title">🥫 Pet Food: 160kg Goal</div>
+                <div class="progress-bar-wrapper">
+                    <div class="progress-bar" id="foodProgressBar">0kg</div>
+                </div>
+                <div class="progress-text">
+                    <span id="kgCollected">0</span>kg collected (Double last year!)
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number" id="housesVisited">0</div>
+                    <div class="stat-label">Houses</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="donorsCount">0</div>
+                    <div class="stat-label">Donors</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Photo Gallery - Last Year's Success -->
+        <div class="photo-gallery">
+            <div class="card-header">
+                <span class="card-icon">📸</span>
+                <span class="card-title">Last Year's 80kg Success!</span>
+            </div>
+            <p style="color: #666; margin-bottom: 15px; font-size: 14px;">
+                Proof of our amazing community support!
+            </p>
+            <div class="photo-grid">
+                <div class="photo-placeholder" style="position: relative;">
+                    <input type="file" accept="image/*" onchange="loadPhoto(event, 1)">
+                    <div id="photoText1">
+                        📷<br>
+                        Tap to add<br>
+                        Door-to-door
+                    </div>
+                    <img id="photo1" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 10px; position: absolute; top: 0; left: 0;">
+                </div>
+                
+                <div class="photo-placeholder" style="position: relative;">
+                    <input type="file" accept="image/*" onchange="loadPhoto(event, 2)">
+                    <div id="photoText2">
+                        📷<br>
+                        Tap to add<br>
+                        Food bags
+                    </div>
+                    <img id="photo2" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 10px; position: absolute; top: 0; left: 0;">
+                </div>
+                
+                <div class="photo-placeholder" style="position: relative;">
+                    <input type="file" accept="image/*" onchange="loadPhoto(event, 3)">
+                    <div id="photoText3">
+                        📷<br>
+                        Tap to add<br>
+                        Delivery
+                    </div>
+                    <img id="photo3" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 10px; position: absolute; top: 0; left: 0;">
+                </div>
+                
+                <div class="photo-placeholder" style="position: relative;">
+                    <input type="file" accept="image/*" onchange="loadPhoto(event, 4)">
+                    <div id="photoText4">
+                        📷<br>
+                        Tap to add<br>
+                        80kg achieved!
+                    </div>
+                    <img id="photo4" style="display: none; width: 100%; height: 100%; object-fit: cover; border-radius: 10px; position: absolute; top: 0; left: 0;">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quick Contact - Mobile Optimized -->
+        <div class="mobile-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
+            <div class="card-header">
+                <span class="card-icon" style="font-size: 40px;">🚪</span>
+                <span class="card-title" style="color: white;">We'll Pick Up!</span>
+            </div>
+            <p style="color: white; margin-bottom: 15px; font-size: 16px;">
+                Contact us and we'll come collect your donation!
+            </p>
+            
+            <div class="contact-grid">
+                <a href="tel:6044461506" class="contact-button">
+                    <span class="contact-button-icon">📱</span>
+                    <span>Call: 604-446-1506</span>
+                </a>
+                
+                <a href="sms:6044461506?body=Hi! I have pet food donations for Paws for a Cause!" class="contact-button">
+                    <span class="contact-button-icon">💬</span>
+                    <span>Text Message</span>
+                </a>
+                
+                <a href="https://wa.me/16044461506?text=Hi! I have pet food donations for the Paws for a Cause drive!" class="contact-button">
+                    <span class="contact-button-icon">💚</span>
+                    <span>WhatsApp</span>
+                </a>
+                
+                <a href="mailto:rumeetsodhi@outlook.com?subject=Pet Food Donation Pickup Request" class="contact-button">
+                    <span class="contact-button-icon">📧</span>
+                    <span>Email</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- What We Need - WITH SPECIFIC BRANDS -->
+        <div class="mobile-card">
+            <div class="card-header">
+                <span class="card-icon">🥫</span>
+                <span class="card-title">Items Needed</span>
+            </div>
+            
+            <div class="item-category">
+                <div class="item-category-title">
+                    <span>🐕</span>
+                    <span>DOG FOOD BRANDS</span>
+                </div>
+                <div class="brand-list">
+                    <div class="brand-item">Royal Canin Large Breed</div>
+                    <div class="brand-item">Orijen</div>
+                    <div class="brand-item">Acana</div>
+                    <div class="brand-item">Similar quality brands</div>
+                </div>
+            </div>
+            
+            <div class="item-category">
+                <div class="item-category-title">
+                    <span>🐈</span>
+                    <span>CAT FOOD BRANDS</span>
+                </div>
+                <div class="brand-list">
+                    <div class="brand-item">All Cats</div>
+                    <div class="brand-item">Royal Canin</div>
+                    <div class="brand-item">Orijen</div>
+                    <div class="brand-item">Acana</div>
+                    <div class="brand-item">Similar quality brands</div>
+                </div>
+            </div>
+            
+            <div class="item-category">
+                <div class="item-category-title">
+                    <span>🐰</span>
+                    <span>OTHER PETS</span>
+                </div>
+                <div class="brand-list">
+                    <div class="brand-item">Small pet food (rabbits, birds)</div>
+                    <div class="brand-item">Pet treats (any brand)</div>
+                </div>
+            </div>
+            
+            <div style="background: #fff3cd; padding: 12px; border-radius: 10px; margin-top: 15px; text-align: center;">
+                <p style="color: #856404; font-weight: bold; margin: 0; font-size: 14px;">
+                    ✅ Unopened packages only<br>
+                    ✅ Check expiration dates
+                </p>
+            </div>
+        </div>
+        
+        <!-- Shelters -->
+        <div class="mobile-card">
+            <div class="card-header">
+                <span class="card-icon">🏠</span>
+                <span class="card-title">Verified Shelters</span>
+            </div>
+            
+            <div class="shelter-card">
+                <div class="shelter-name">🐾 Vancouver Animal Services</div>
+                <a href="https://vancouver.ca/home-property-development/donating-to-or-volunteering-with-vancouver-animal-services.aspx" 
+                   target="_blank" 
+                   class="shelter-link">
+                    Visit Official Site →
+                </a>
+            </div>
+            
+            <div class="shelter-card">
+                <div class="shelter-name">🐕 New Westminster Animal Shelter</div>
+                <a href="https://www.newwestcity.ca/services/animal-services/animal-shelter/how-you-can-help#donate-items" 
+                   target="_blank" 
+                   class="shelter-link">
+                    Visit Official Site →
+                </a>
+            </div>
+            
+            <div class="shelter-card">
+                <div class="shelter-name">🐈 Delta Community Animal Shelter</div>
+                <a href="https://www.delta.ca/services/delta-community-animal-shelter/donate-and-volunteer" 
+                   target="_blank" 
+                   class="shelter-link">
+                    Visit Official Site →
+                </a>
+            </div>
+        </div>
+        
+        <!-- Share - WITH NEW MESSAGE -->
+        <div class="qr-section">
+            <h3 style="color: #764ba2; margin-bottom: 10px;">I Need Your Help!</h3>
+            <p style="color: #666; margin-bottom: 15px; font-size: 15px; line-height: 1.6;">
+                <strong>Please share this campaign!</strong><br>
+                We need YOUR help to spread this website and get more food donations. 
+                Every share helps a hungry pet! 🐾
+            </p>
+            <div class="qr-placeholder">
+                <div>
+                    QR Code<br>
+                    <small>Generate after deployment</small>
+                </div>
+            </div>
+            <p style="color: #764ba2; font-size: 14px; font-weight: bold;">[Your website URL]</p>
+            <p style="color: #666; margin-top: 15px; font-size: 14px;">
+                Share via WhatsApp, text, or social media!
+            </p>
+        </div>
+        
+        <!-- Footer -->
+        <div class="mobile-footer">
+            <p>Made with ❤️ by Myrah</p>
+            <p style="margin-top: 5px;">Every pet deserves a full belly! 🐾</p>
+        </div>
+    </div>
+    
+    <script>
+        // Calculate days left
+        window.addEventListener('load', function() {
+            const endDate = new Date('December 28, 2024');
+            const today = new Date();
+            const daysLeft = Math.ceil((endDate - today) / (1000 * 60 * 60 * 24));
+            document.getElementById('daysLeft').textContent = daysLeft > 0 ? daysLeft : 0;
+            
+            // Animate progress bars
+            setTimeout(() => {
+                // Update these values as campaign progresses
+                const foodProgress = 0; // kg collected
+                const foodGoal = 160;
+                const foodPercentage = (foodProgress / foodGoal) * 100;
+                document.getElementById('foodProgressBar').style.width = foodPercentage + '%';
+                document.getElementById('foodProgressBar').textContent = foodProgress + 'kg';
+                document.getElementById('kgCollected').textContent = foodProgress;
+                
+                const runProgress = 0; // km completed
+                const runGoal = 100;
+                const runPercentage = (runProgress / runGoal) * 100;
+                document.getElementById('challengeProgressBar').style.width = runPercentage + '%';
+                document.getElementById('challengeProgressBar').textContent = runProgress + 'km';
+                document.getElementById('kmCompleted').textContent = runProgress;
+                
+                // Update stats
+                document.getElementById('housesVisited').textContent = 0;
+                document.getElementById('donorsCount').textContent = 0;
+            }, 500);
+        });
+        
+        // Handle photo uploads
+        function loadPhoto(event, photoNum) {
+            const file = event.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('photo' + photoNum).src = e.target.result;
+                    document.getElementById('photo' + photoNum).style.display = 'block';
+                    document.getElementById('photoText' + photoNum).style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+        
+        // Prevent zoom on double tap (iOS)
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+    </script>
+</body>
+</html>
